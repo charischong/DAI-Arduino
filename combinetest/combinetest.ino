@@ -6,8 +6,8 @@ Servo myservo;  // create servo object to control a servo
 int pos = 0;    // variable to store the servo position
 
 const int FSR_PIN = A0; // Pin connected to FSR/resistor divider
-const int LED_PIN1 = 7;
-//const int LED_PIN2 = 6;
+const int LED_PIN1 = 13;
+const int LED_PIN2 = 11;
 //const int LED_PIN3 = 4;
 const float VCC = 4.98; // Measured voltage of Ardunio 5V line
 const float R_DIV = 3230.0; // Measured resistance of 3.3k resistor
@@ -17,8 +17,8 @@ void setup()
   Serial.begin(9600);
   pinMode(FSR_PIN, INPUT);
   pinMode(LED_PIN1, OUTPUT);
-  myservo.attach(9);  // attaches the servo on pin 9 to the servo object 
-//  pinMode(LED_PIN2, OUTPUT);
+  myservo.attach(12);  // attaches the servo on pin 9 to the servo object 
+  pinMode(LED_PIN2, OUTPUT);
 //  pinMode(LED_PIN3, OUTPUT);
 }
 
@@ -48,7 +48,15 @@ void loop()
     Serial.println();
     if(force>100)
     {
-        digitalWrite(LED_PIN1,HIGH);
+       digitalWrite(LED_PIN1,LOW);
+       digitalWrite(LED_PIN2,HIGH);
+    }
+    if(force>200)
+    {
+      digitalWrite(LED_PIN1,HIGH);
+      digitalWrite(LED_PIN2,LOW);
+    }
+//        
 //      digitalWrite(LED_PIN2,LOW);
 //      digitalWrite(LED_PIN3,LOW);}
 //    if(force>20)
@@ -71,8 +79,8 @@ void loop()
 //      digitalWrite(LED_PIN1,LOW);
 //    }
 //  
-    delay(500);
-    }
+    delay(50);
+//    }
     
   }
   else
